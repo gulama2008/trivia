@@ -3,14 +3,25 @@ import { TriviaAPI } from '../services/trivia-api';
 
 
 export const TriviaContext = createContext<any>(null);
-export interface Category { 
+export interface ICategory { 
   id: number,
   name:string
 }
+
+export interface IQuestion { 
+  category:string,
+correct_answer:string,
+difficulty:string,
+incorrect_answers: string[],
+question:string,
+type:string
+}
 const TriviaContextProvider = ({ children }: any) => {
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<ICategory[]>([]);
   const [chosenCategory, setChosenCategory] = useState<number>(0);
   const [chosenDifficulty, setChosenDifficulty] = useState<string>("");
+  const [currentQuestions, setCurrentQuestions] = useState<IQuestion[]>([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   useEffect(() => { 
     TriviaAPI.getCategories()
       .then(res => { 
@@ -19,7 +30,8 @@ const TriviaContextProvider = ({ children }: any) => {
       })
     .catch(err=>console.error(err)
     )
-  },[])
+  }, [])
+  
   return (
     <TriviaContext.Provider
       value={{
@@ -29,6 +41,10 @@ const TriviaContextProvider = ({ children }: any) => {
         setChosenCategory,
         chosenDifficulty,
         setChosenDifficulty,
+        currentQuestions,
+        setCurrentQuestions,
+        currentQuestionIndex,
+        setCurrentQuestionIndex,
       }}
     >
       {children}

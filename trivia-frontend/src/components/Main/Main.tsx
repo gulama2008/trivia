@@ -1,8 +1,11 @@
 import React from 'react'
+import QuestionContainer from '../../containers/QuestionContainer/QuestionContainer'
 
 const Main = () => {
   return (
-    <div>Main</div>
+    <div>
+      <QuestionContainer/>
+    </div>
   )
 }
 

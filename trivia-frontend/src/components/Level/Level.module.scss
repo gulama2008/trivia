@@ -1,0 +1,25 @@
+.container{
+    cursor: pointer;
+    height: 100px;
+    width: 200px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 20px;
+    padding: 20px;
+    color: #fae6e9;
+    font-size: 30px;
+    font-weight: 600;
+
+}
+
+.easy{
+    background:linear-gradient(to bottom right,#ee709d,#ec8d6b)
+}
+
+.medium{
+    background:linear-gradient(to bottom right,#5272ef,#38bbf9)
+}
+
+.hard{
+    background:linear-gradient(to bottom right,#a38fd3,#f9bfe9)
+}

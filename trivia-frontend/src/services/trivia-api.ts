@@ -1,6 +1,6 @@
-import { Category } from "../TriviaContextProvider/TriviaContextProvider";
+import { ICategory} from "../TriviaContextProvider/TriviaContextProvider";
 export interface CategoryResponse {
-  trivia_categories: Category[];
+  trivia_categories: ICategory[];
 }
 export interface GetQuestionsRequestParams {
   category: number;
