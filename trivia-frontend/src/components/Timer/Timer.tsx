@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { TriviaContext } from '../../TriviaContextProvider/TriviaContextProvider';
+import React, { useContext, useEffect, useState } from "react";
+import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 
 const Timer = () => {
   const {
@@ -7,6 +7,7 @@ const Timer = () => {
     setCurrentQuestions,
     currentQuestionIndex,
     setCurrentQuestionIndex,
+    setShowGameOverModal,
   } = useContext(TriviaContext);
 
   const [countDown, setCountDown] = useState<number>(10);
@@ -14,22 +15,18 @@ const Timer = () => {
     let interval: any;
     console.log(currentQuestions);
     let countDown = 10;
-    if (currentQuestions.length > 0 ) {
+    if (currentQuestions.length > 0) {
       interval = setInterval(() => {
-        
         setCountDown(countDown--);
         if (countDown < 0) {
           clearInterval(interval);
+          setShowGameOverModal(true);
         }
-        
       }, 1000);
-      
-    } 
+    }
     return () => clearInterval(interval);
-   },[currentQuestions,currentQuestionIndex])
-  return (
-    <div>{ countDown}</div>
-  )
-}
+  }, [currentQuestions, currentQuestionIndex]);
+  return <div>{countDown}</div>;
+};
 
-export default Timer
+export default Timer;

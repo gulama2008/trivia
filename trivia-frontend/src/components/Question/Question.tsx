@@ -11,7 +11,7 @@ const Question = () => {
   } = useContext(TriviaContext);
   const [answerArr, setAnswerArr] = useState<string[]>();
   useEffect(() => {
-    console.log("test1");
+    
 
     if (currentQuestions.length > 0) {
       console.log("test2");

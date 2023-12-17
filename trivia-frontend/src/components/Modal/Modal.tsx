@@ -23,7 +23,7 @@ const Modal = () => {
     TriviaAPI.getQuestions(data)
       .then(res => {
         setShowGameOverModal(false)
-        setCurrentQuestions(res)
+        setCurrentQuestions(res.results)
         setCurrentQuestionIndex(0);
       })
       .catch((err) => console.error(err));
