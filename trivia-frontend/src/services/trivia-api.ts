@@ -28,7 +28,7 @@ export class TriviaAPI {
           return await response.json();
       } else { 
           const response = await fetch(
-            `https://opentdb.com/api.php?amount=10&difficulty=${data.difficulty}&type=multiple`
+            `https://opentdb.com/api.php?amount=10&difficulty=${data.difficulty}&type=multiple&type=multiple`
           );
           return await response.json();
       }

@@ -10,19 +10,20 @@ const Question = () => {
     setCurrentQuestionIndex,
   } = useContext(TriviaContext);
   const [answerArr, setAnswerArr] = useState<string[]>();
-    useEffect(() => {
-      console.log("test1");
+  useEffect(() => {
+    console.log("test1");
 
-      if (currentQuestions.length > 0) {
-        console.log("test2");
-        const answerArr = [
-          ...currentQuestions[currentQuestionIndex].incorrect_answers,
-          currentQuestions[currentQuestionIndex].correct_answer,
-        ];
-        const randomOrderAnswerArr = generateRandomOrderArray(answerArr);
-        setAnswerArr(randomOrderAnswerArr);
-      }
-    }, [currentQuestionIndex, currentQuestions]);
+    if (currentQuestions.length > 0) {
+      console.log("test2");
+      const answerArr = [
+        ...currentQuestions[currentQuestionIndex].incorrect_answers,
+        currentQuestions[currentQuestionIndex].correct_answer,
+      ];
+      const randomOrderAnswerArr = generateRandomOrderArray(answerArr);
+      setAnswerArr(randomOrderAnswerArr);
+    }
+  }, [currentQuestionIndex, currentQuestions]);
+
   return (
     <div>
       {currentQuestions.length > 0 && (

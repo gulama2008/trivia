@@ -22,6 +22,9 @@ const TriviaContextProvider = ({ children }: any) => {
   const [chosenDifficulty, setChosenDifficulty] = useState<string>("");
   const [currentQuestions, setCurrentQuestions] = useState<IQuestion[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+  const [showHome, setShowHome] = useState<boolean>(true);
+  const [showTest, setShowTest] = useState<boolean>(false);
+  const [showGameOverModal, setShowGameOverModal] = useState<boolean>(false);
   useEffect(() => { 
     TriviaAPI.getCategories()
       .then(res => { 
@@ -45,6 +48,12 @@ const TriviaContextProvider = ({ children }: any) => {
         setCurrentQuestions,
         currentQuestionIndex,
         setCurrentQuestionIndex,
+        showHome,
+        setShowHome,
+        showTest,
+        setShowTest,
+        showGameOverModal,
+        setShowGameOverModal,
       }}
     >
       {children}

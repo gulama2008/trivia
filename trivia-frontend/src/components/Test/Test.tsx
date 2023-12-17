@@ -1,7 +1,7 @@
 import React from 'react'
 import QuestionContainer from '../../containers/QuestionContainer/QuestionContainer'
 
-const Main = () => {
+const Test = () => {
   return (
     <div>
       <QuestionContainer/>
@@ -9,4 +9,4 @@ const Main = () => {
   )
 }
 
-export default Main
+export default Test

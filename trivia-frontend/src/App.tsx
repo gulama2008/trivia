@@ -1,18 +1,14 @@
-import SideBar from "./components/SideBar/SideBar";
-import Main from "./components/Main/Main";
 import styles from "./App.module.scss";
 import TriviaContextProvider from "./TriviaContextProvider/TriviaContextProvider";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-const queryClient = new QueryClient();
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/Home/Home";
+import Test from "./components/Test/Test";
+import MainContainer from "./containers/MainContainer/MainContainer";
+
 function App() {
   return (
     <TriviaContextProvider>
-      <QueryClientProvider client={queryClient}>
-        <div className={styles.container}>
-          <SideBar />
-          <Main />
-        </div>
-      </QueryClientProvider>
+      <MainContainer/>
     </TriviaContextProvider>
   );
 }
