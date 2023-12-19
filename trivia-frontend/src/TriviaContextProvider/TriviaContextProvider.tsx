@@ -25,6 +25,10 @@ const TriviaContextProvider = ({ children }: any) => {
   const [showHome, setShowHome] = useState<boolean>(true);
   const [showTest, setShowTest] = useState<boolean>(false);
   const [showGameOverModal, setShowGameOverModal] = useState<boolean>(false);
+  const [timerNumber, setTimerNumber] = useState<number>(10);
+  const [stopTimer, setStopTimer] = useState<boolean>(false);
+  const [showWinModal, setShowWinModal] = useState<boolean>(false);
+  const [score, setScore] = useState<number>(0);
   useEffect(() => { 
     TriviaAPI.getCategories()
       .then(res => { 
@@ -34,7 +38,7 @@ const TriviaContextProvider = ({ children }: any) => {
     .catch(err=>console.error(err)
     )
   }, [])
-  
+  console.log("test if rerender context");
   return (
     <TriviaContext.Provider
       value={{
@@ -54,6 +58,14 @@ const TriviaContextProvider = ({ children }: any) => {
         setShowTest,
         showGameOverModal,
         setShowGameOverModal,
+        timerNumber,
+        setTimerNumber,
+        stopTimer,
+        setStopTimer,
+        showWinModal,
+        setShowWinModal,
+        score,
+        setScore,
       }}
     >
       {children}

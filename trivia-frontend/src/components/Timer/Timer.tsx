@@ -8,25 +8,36 @@ const Timer = () => {
     currentQuestionIndex,
     setCurrentQuestionIndex,
     setShowGameOverModal,
+    showGameOverModal,
+    timerNumber,
+    setTimerNumber,
+    stopTimer,
+    setStopTimer,
   } = useContext(TriviaContext);
+console.log("testtest");
 
   const [countDown, setCountDown] = useState<number>(10);
   useEffect(() => {
-    let interval: any;
-    console.log(currentQuestions);
-    let countDown = 10;
-    if (currentQuestions.length > 0) {
-      interval = setInterval(() => {
-        setCountDown(countDown--);
-        if (countDown < 0) {
-          clearInterval(interval);
-          setShowGameOverModal(true);
-        }
-      }, 1000);
-    }
+    let countdown = 10;
+    // let interval: any;
+
+    const interval = setInterval(() => {
+      console.log(stopTimer);
+      if (countdown <= 1) {
+        setShowGameOverModal(true);
+        clearInterval(interval);
+      }
+      if (stopTimer) {
+        setShowGameOverModal(true);
+        clearInterval(interval);
+        console.log(timerNumber);
+      }
+      setTimerNumber(--countdown);
+    }, 1000);
+
     return () => clearInterval(interval);
-  }, [currentQuestions, currentQuestionIndex]);
-  return <div>{countDown}</div>;
+  }, [currentQuestions, currentQuestionIndex,stopTimer]);
+  return <div>{timerNumber}</div>;
 };
 
 export default Timer;
