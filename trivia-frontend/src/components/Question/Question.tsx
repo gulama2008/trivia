@@ -17,7 +17,8 @@ const Question = () => {
     setShowWinModal,
     score,
     setScore,
-    setAnswerIndex
+    setAnswerIndex,
+    showGameOverModal,
   } = useContext(TriviaContext);
   const [answerArr, setAnswerArr] = useState<string[]>();
   useEffect(() => {
@@ -31,31 +32,34 @@ const Question = () => {
       setAnswerArr(randomOrderAnswerArr);
     }
   }, [currentQuestionIndex, currentQuestions]);
-
-  const handleClick = (e: any) => {
+  let questionContainerClass;
+  if (showGameOverModal || showWinModal) { 
+    questionContainerClass = styles.is_disabled;
+  }
+  // const handleClick = (e: any) => {
     
-    if (
-      e.target.innerText ==
-      currentQuestions[currentQuestionIndex].correct_answer
-    ) {
-      setScore(score + 1);
-      if (currentQuestionIndex == 10) {
-        setShowWinModal(true)
-      } else {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-      }
-    } else {
-      console.log("come to here");
+  //   if (
+  //     e.target.innerText ==
+  //     currentQuestions[currentQuestionIndex].correct_answer
+  //   ) {
+  //     setScore(score + 1);
+  //     if (currentQuestionIndex == 10) {
+  //       setShowWinModal(true)
+  //     } else {
+  //       setCurrentQuestionIndex(currentQuestionIndex + 1);
+  //     }
+  //   } else {
+  //     console.log("come to here");
 
-      setShowGameOverModal(true);
-      setStopTimer(true);
-    }
-  };
+  //     setShowGameOverModal(true);
+  //     setStopTimer(true);
+  //   }
+  // };
 
   return (
     <div className={styles.container}>
-      {currentQuestions.length > 0 && (
-        <div>
+      {currentQuestions?.length > 0 && (
+        <div className={questionContainerClass}>
           <div className={styles.question}>{currentQuestions[currentQuestionIndex].question}</div>
           {answerArr?.map((answer: string, index: number) => {
             return (

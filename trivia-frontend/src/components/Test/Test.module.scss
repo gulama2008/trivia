@@ -19,3 +19,20 @@
     font-size: 20px;
     text-align: center;
 }
+
+.score{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.score_img{
+    width: 30px;
+    height: 30px;
+}
+
+.score_content{
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+}

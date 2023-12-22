@@ -19,6 +19,7 @@ const Modal = ({ title }: ModalProps) => {
     setStopTimer,
     setScore,
     setAnswerIndex,
+    setChosenDifficulty,
   } = useContext(TriviaContext);
   const handleTryAgain = () => {
     const data = {
@@ -43,10 +44,11 @@ const Modal = ({ title }: ModalProps) => {
     setAnswerIndex();
     setShowHome(true);
     setShowTest(false);
+    setChosenDifficulty();
   };
   return (
     <div>
-      <div>{title}</div>
+      <div className={styles.content}>{title}</div>
       <button onClick={handleTryAgain} className={styles.btn}>
         Try again
       </button>

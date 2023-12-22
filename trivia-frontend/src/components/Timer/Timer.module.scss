@@ -1,3 +1,15 @@
 .container{
     display: flex;
+    align-items: center;
+    gap:5px;
+}
+
+.timer_img{
+    width: 25px;
+}
+
+.timer_second{
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
 }

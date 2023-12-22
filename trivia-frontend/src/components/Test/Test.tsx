@@ -5,6 +5,7 @@ import Timer from "../Timer/Timer";
 import Question from "../Question/Question";
 import styles from "./Test.module.scss";
 import Correct from "../Correct/Correct";
+import trophy from "../../assets/trophy.png"
 
 const Test = () => {
   const {
@@ -20,7 +21,12 @@ const Test = () => {
     <div className={styles.container}>
       <div className={styles.header}>
         <Timer />
-        <div>Score: {score}</div>
+        <div className={styles.score}>
+          <div>
+            <img src={trophy} alt="" className={ styles.score_img} />
+          </div>
+          <div className={styles.score_content}>{score}</div>
+        </div>
       </div>
       <div className={styles.question_number}>
         {currentQuestionIndex + 1}/10

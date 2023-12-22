@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 import styles from "./Timer.module.scss"
+import timer from "../../assets/timer.png"
 const Timer = () => {
   const {
     currentQuestions,
@@ -39,8 +40,8 @@ console.log("testtest");
   }, [currentQuestions, currentQuestionIndex,stopTimer]);
   return (
     <div className={styles.container}>
-      <div>Time Left:</div>
-      <div>{timerNumber}</div>
+      <div><img src={timer} alt="" className={ styles.timer_img} /></div>
+      <div className={styles.timer_second}>{ timerNumber==10?`00:10`:`00:0${timerNumber}`}</div>
     </div>
   );
 };
