@@ -5,9 +5,11 @@ export interface LevelProps{
   title:string
 }
 const Level = ({ title }: LevelProps) => {
-  const { setChosenDifficulty } = useContext(TriviaContext);
+  const { chosenDifficulty, setChosenDifficulty } = useContext(TriviaContext);
   let containerClass = styles.container + ` ${styles[title]}`;
-  
+  if (chosenDifficulty==title) { 
+    containerClass+=` ${styles.chosen}`
+  }
   const handleClick = () => { 
     setChosenDifficulty(title);
   }

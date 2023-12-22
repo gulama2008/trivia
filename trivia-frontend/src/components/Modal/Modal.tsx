@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 import { TriviaAPI } from "../../services/trivia-api";
+import styles from "./Modal.module.scss"
 export interface ModalProps {
   title: string;
 }
@@ -16,7 +17,8 @@ const Modal = ({ title }: ModalProps) => {
     setCurrentQuestions,
     setCurrentQuestionIndex,
     setStopTimer,
-    setScore
+    setScore,
+    setAnswerIndex,
   } = useContext(TriviaContext);
   const handleTryAgain = () => {
     const data = {
@@ -28,6 +30,7 @@ const Modal = ({ title }: ModalProps) => {
         setShowGameOverModal(false);
         setStopTimer(false);
         setScore(0);
+        setAnswerIndex();
         setCurrentQuestions(res.results);
         setCurrentQuestionIndex(0);
       })
@@ -37,14 +40,19 @@ const Modal = ({ title }: ModalProps) => {
     setShowGameOverModal(false);
     setStopTimer(false);
     setScore(0);
+    setAnswerIndex();
     setShowHome(true);
     setShowTest(false);
   };
   return (
     <div>
       <div>{title}</div>
-      <button onClick={handleTryAgain}>Try again</button>
-      <button onClick={handleQuit}>Quit</button>
+      <button onClick={handleTryAgain} className={styles.btn}>
+        Try again
+      </button>
+      <button onClick={handleQuit} className={styles.btn}>
+        Quit
+      </button>
     </div>
   );
 };

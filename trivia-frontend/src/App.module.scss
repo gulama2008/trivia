@@ -1,3 +1,9 @@
 .container{
+    width: 1000px;
+    height: 700px;
     display: flex;
+    justify-content: center;
+    align-items:stretch;
+    background: linear-gradient(to bottom right,#be71d0,#5842cd);
+    border-radius: 10px;
 }

@@ -3,7 +3,7 @@ import Categories from "../Category/Categories";
 import { useContext, useEffect } from "react";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 import { TriviaAPI } from "../../services/trivia-api";
-import Modal from "../Modal/Modal";
+import styles from "./Home.module.scss";
 
 const Home = () => {
   const {
@@ -17,8 +17,10 @@ const Home = () => {
     setShowTest,
     showGameOverModal,
   } = useContext(TriviaContext);
-  
+
   const handleClick = () => {
+    console.log("test");
+    
     const data = {
       category: chosenCategory,
       difficulty: chosenDifficulty,
@@ -30,20 +32,21 @@ const Home = () => {
     });
   };
   return (
-    <div>
-      <div>
-        <div>Select category</div>
-        <Categories />
-        <div>Choose a level</div>
-        {/* <div>Easy</div>
-      <div>Medium</div>
-      <div>Hard</div> */}
-        <Level title="easy" />
-        <Level title="medium" />
-        <Level title="hard" />
-        <button onClick={handleClick}>Start Game</button>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        Let's Play
       </div>
-      
+      <div className={styles.options}>
+        <div className={styles.title}>Select category</div>
+        <Categories />
+        <div className={styles.title}>Choose a level</div>
+        <div className={styles.level}>
+          <Level title="easy" />
+          <Level title="medium" />
+          <Level title="hard" />
+        </div>
+        <button onClick={handleClick} className={styles.btn}>Start Game</button>
+      </div>
     </div>
   );
 };

@@ -3,28 +3,46 @@ import Modal from "../Modal/Modal";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 import Timer from "../Timer/Timer";
 import Question from "../Question/Question";
-import WinModal from "../WinModal/WinModal";
+import styles from "./Test.module.scss";
+import Correct from "../Correct/Correct";
 
 const Test = () => {
-  const { showGameOverModal, currentQuestionIndex, showWinModal, score } =
-    useContext(TriviaContext);
+  const {
+    showGameOverModal,
+    currentQuestionIndex,
+    showWinModal,
+    score,
+    showCorrect,
+    
+  } = useContext(TriviaContext);
   useEffect(() => {}, [showGameOverModal]);
   return (
-    <div>
-      <div>{currentQuestionIndex + 1}/10</div>
-      <div>{ score}</div>
-      <Timer />
-      <Question />
-      {showGameOverModal && (
-        <div>
-          <Modal title="Game Over!" />
-        </div>
-      )}
-      {showWinModal && (
-        <div>
-          <Modal title="Congratulations! You win!" />
-        </div>
-      )}
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <Timer />
+        <div>Score: {score}</div>
+      </div>
+      <div className={styles.question_number}>
+        {currentQuestionIndex + 1}/10
+      </div>
+      <div className={styles.question_container}>
+        <Question />
+        {showCorrect && (
+          <div>
+            <Correct />
+          </div>
+        )}
+        {showGameOverModal && (
+          <div>
+            <Modal title="Game Over!" />
+          </div>
+        )}
+        {showWinModal && (
+          <div>
+            <Modal title="Congratulations! You win!" />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

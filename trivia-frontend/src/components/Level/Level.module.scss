@@ -1,19 +1,20 @@
 .container{
     cursor: pointer;
-    height: 100px;
-    width: 200px;
+    height: 50px;
+    width: 100px;
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     margin-bottom: 20px;
     padding: 20px;
     color: #fae6e9;
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 600;
 
 }
 
 .easy{
-    background:linear-gradient(to bottom right,#ee709d,#ec8d6b)
+    background:linear-gradient(to bottom right,#ee709d,#ec8d6b);
+    
 }
 
 .medium{
@@ -22,4 +23,8 @@
 
 .hard{
     background:linear-gradient(to bottom right,#a38fd3,#f9bfe9)
+}
+
+.chosen{
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }

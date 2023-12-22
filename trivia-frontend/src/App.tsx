@@ -8,7 +8,9 @@ import MainContainer from "./containers/MainContainer/MainContainer";
 function App() {
   return (
     <TriviaContextProvider>
-      <MainContainer/>
+      <div className={styles.container}>
+        <MainContainer />
+      </div>
     </TriviaContextProvider>
   );
 }

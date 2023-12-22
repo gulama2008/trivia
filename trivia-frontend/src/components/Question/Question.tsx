@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 import { generateRandomOrderArray } from "../../services/utils";
-import Score from "../Score/Score";
+import styles from "./Question.module.scss"
+import Answer from "../Answer/Answer";
 
 const Question = () => {
   const {
@@ -16,11 +17,12 @@ const Question = () => {
     setShowWinModal,
     score,
     setScore,
+    setAnswerIndex
   } = useContext(TriviaContext);
   const [answerArr, setAnswerArr] = useState<string[]>();
   useEffect(() => {
     if (currentQuestions.length > 0) {
-      console.log("test2");
+      setAnswerIndex();
       const answerArr = [
         ...currentQuestions[currentQuestionIndex].incorrect_answers,
         currentQuestions[currentQuestionIndex].correct_answer,
@@ -31,6 +33,7 @@ const Question = () => {
   }, [currentQuestionIndex, currentQuestions]);
 
   const handleClick = (e: any) => {
+    
     if (
       e.target.innerText ==
       currentQuestions[currentQuestionIndex].correct_answer
@@ -50,15 +53,16 @@ const Question = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       {currentQuestions.length > 0 && (
         <div>
-          <div>{currentQuestions[currentQuestionIndex].question}</div>
+          <div className={styles.question}>{currentQuestions[currentQuestionIndex].question}</div>
           {answerArr?.map((answer: string, index: number) => {
             return (
-              <div onClick={handleClick} key={index}>
-                {answer}
-              </div>
+              <Answer content={ answer} index={index} />
+              // <div onClick={handleClick} key={index} className={}>
+              //   {answer}
+              // </div>
             );
           })}
         </div>

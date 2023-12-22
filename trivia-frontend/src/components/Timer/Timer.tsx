@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
-
+import styles from "./Timer.module.scss"
 const Timer = () => {
   const {
     currentQuestions,
@@ -37,7 +37,12 @@ console.log("testtest");
 
     return () => clearInterval(interval);
   }, [currentQuestions, currentQuestionIndex,stopTimer]);
-  return <div>{timerNumber}</div>;
+  return (
+    <div className={styles.container}>
+      <div>Time Left:</div>
+      <div>{timerNumber}</div>
+    </div>
+  );
 };
 
 export default Timer;
