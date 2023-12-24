@@ -3,6 +3,7 @@ import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider
 import { generateRandomOrderArray } from "../../services/utils";
 import styles from "./Question.module.scss"
 import Answer from "../Answer/Answer";
+import { QuestionService } from "../../services/questions-service";
 
 const Question = () => {
   const {
@@ -30,31 +31,14 @@ const Question = () => {
       ];
       const randomOrderAnswerArr = generateRandomOrderArray(answerArr);
       setAnswerArr(randomOrderAnswerArr);
+      
     }
   }, [currentQuestionIndex, currentQuestions]);
   let questionContainerClass;
   if (showGameOverModal || showWinModal) { 
     questionContainerClass = styles.is_disabled;
   }
-  // const handleClick = (e: any) => {
-    
-  //   if (
-  //     e.target.innerText ==
-  //     currentQuestions[currentQuestionIndex].correct_answer
-  //   ) {
-  //     setScore(score + 1);
-  //     if (currentQuestionIndex == 10) {
-  //       setShowWinModal(true)
-  //     } else {
-  //       setCurrentQuestionIndex(currentQuestionIndex + 1);
-  //     }
-  //   } else {
-  //     console.log("come to here");
-
-  //     setShowGameOverModal(true);
-  //     setStopTimer(true);
-  //   }
-  // };
+  
 
   return (
     <div className={styles.container}>
@@ -64,9 +48,6 @@ const Question = () => {
           {answerArr?.map((answer: string, index: number) => {
             return (
               <Answer content={ answer} index={index} />
-              // <div onClick={handleClick} key={index} className={}>
-              //   {answer}
-              // </div>
             );
           })}
         </div>

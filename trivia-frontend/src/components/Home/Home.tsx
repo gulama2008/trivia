@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 import { TriviaAPI } from "../../services/trivia-api";
 import styles from "./Home.module.scss";
+import { GameService } from "../../services/games-service";
 
 const Home = () => {
   const {
@@ -16,11 +17,18 @@ const Home = () => {
     showTest,
     setShowTest,
     showGameOverModal,
+    currentGameId,
+    setCurrentGameId,
   } = useContext(TriviaContext);
 
   const handleClick = () => {
-    console.log("test");
-    
+    GameService.createGame()
+      .then((res) => {
+        console.log(res);
+        setCurrentGameId(res.id)
+      })
+      .catch((err) => console.error(err));
+
     const data = {
       category: chosenCategory,
       difficulty: chosenDifficulty,
@@ -33,9 +41,7 @@ const Home = () => {
   };
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        Let's Play
-      </div>
+      <div className={styles.header}>Let's Play</div>
       <div className={styles.options}>
         <div className={styles.title}>Select category</div>
         <Categories />
@@ -45,7 +51,13 @@ const Home = () => {
           <Level title="medium" />
           <Level title="hard" />
         </div>
-        <button onClick={handleClick} className={styles.btn}>Start Game</button>
+        <button onClick={handleClick} className={styles.btn}>
+          Start Game
+        </button>
+      </div>
+      <div>
+        <div>Or replay failed questions</div>
+        <button>Start</button>
       </div>
     </div>
   );

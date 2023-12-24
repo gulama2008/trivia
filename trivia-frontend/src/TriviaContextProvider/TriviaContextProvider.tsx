@@ -31,6 +31,7 @@ const TriviaContextProvider = ({ children }: any) => {
   const [score, setScore] = useState<number>(0);
   const [answerIndex, setAnswerIndex] = useState<number>();
   const [showCorrect, setShowCorrect] = useState<boolean>(false);
+  const [currentGameId, setCurrentGameId] = useState<number>();
   useEffect(() => { 
     TriviaAPI.getCategories()
       .then(res => { 
@@ -72,6 +73,8 @@ const TriviaContextProvider = ({ children }: any) => {
         setAnswerIndex,
         showCorrect,
         setShowCorrect,
+        currentGameId,
+        setCurrentGameId,
       }}
     >
       {children}
