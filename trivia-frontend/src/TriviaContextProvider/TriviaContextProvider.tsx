@@ -1,20 +1,19 @@
-import  { createContext, useEffect, useState } from 'react'
-import { TriviaAPI } from '../services/trivia-api';
-
+import { createContext, useEffect, useState } from "react";
+import { TriviaAPI } from "../services/trivia-api";
 
 export const TriviaContext = createContext<any>(null);
-export interface ICategory { 
-  id: number,
-  name:string
+export interface ICategory {
+  id: number;
+  name: string;
 }
 
-export interface IQuestion { 
-  category:string,
-correct_answer:string,
-difficulty:string,
-incorrect_answers: string[],
-question:string,
-type:string
+export interface IQuestion {
+  category: string;
+  correct_answer: string;
+  difficulty: string;
+  incorrect_answers: string[];
+  question: string;
+  type: string;
 }
 const TriviaContextProvider = ({ children }: any) => {
   const [categories, setCategories] = useState<ICategory[]>([]);
@@ -22,7 +21,7 @@ const TriviaContextProvider = ({ children }: any) => {
   const [chosenDifficulty, setChosenDifficulty] = useState<string>("");
   const [currentQuestions, setCurrentQuestions] = useState<IQuestion[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-  const [showHome, setShowHome] = useState<boolean>(true);
+  const [showNewGame, setShowNewGame] = useState<boolean>(true);
   const [showTest, setShowTest] = useState<boolean>(false);
   const [showGameOverModal, setShowGameOverModal] = useState<boolean>(false);
   const [timerNumber, setTimerNumber] = useState<number>(10);
@@ -32,15 +31,18 @@ const TriviaContextProvider = ({ children }: any) => {
   const [answerIndex, setAnswerIndex] = useState<number>();
   const [showCorrect, setShowCorrect] = useState<boolean>(false);
   const [currentGameId, setCurrentGameId] = useState<number>();
-  useEffect(() => { 
+  const [showNewGameContainer, setShowNewGameContainer] =
+    useState<boolean>(false);
+  const [showFailedGame, setShowFailedGame] = useState<boolean>(false);
+  const [showHome, setShowHome] = useState<boolean>(true);
+  useEffect(() => {
     TriviaAPI.getCategories()
-      .then(res => { 
+      .then((res) => {
         const categories = res.trivia_categories;
         setCategories(categories);
       })
-    .catch(err=>console.error(err)
-    )
-  }, [])
+      .catch((err) => console.error(err));
+  }, []);
   console.log("test if rerender context");
   return (
     <TriviaContext.Provider
@@ -55,8 +57,10 @@ const TriviaContextProvider = ({ children }: any) => {
         setCurrentQuestions,
         currentQuestionIndex,
         setCurrentQuestionIndex,
-        showHome,
-        setShowHome,
+        showNewGameContainer,
+        setShowNewGameContainer,
+        showNewGame,
+        setShowNewGame,
         showTest,
         setShowTest,
         showGameOverModal,
@@ -75,11 +79,15 @@ const TriviaContextProvider = ({ children }: any) => {
         setShowCorrect,
         currentGameId,
         setCurrentGameId,
+        showHome,
+        setShowHome,
+        showFailedGame,
+        setShowFailedGame,
       }}
     >
       {children}
     </TriviaContext.Provider>
   );
-}
+};
 
-export default TriviaContextProvider
+export default TriviaContextProvider;

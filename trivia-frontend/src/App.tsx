@@ -1,15 +1,14 @@
 import styles from "./App.module.scss";
 import TriviaContextProvider from "./TriviaContextProvider/TriviaContextProvider";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home/Home";
-import Test from "./components/Test/Test";
-import MainContainer from "./containers/MainContainer/MainContainer";
+import HomeContainer from "./containers/HomeContainer/HomeContainer";
+
 
 function App() {
   return (
     <TriviaContextProvider>
       <div className={styles.container}>
-        <MainContainer />
+        <HomeContainer />
       </div>
     </TriviaContextProvider>
   );
