@@ -24,10 +24,21 @@ const Home = () => {
     QuestionService.getByFailureStatus()
       .then((res) => {
         console.log(res);
+        const questionArr = res.map((q) => q.question);
+        let indexes: number[] = [];
+        questionArr.map((q, index) => {
+          if (questionArr.indexOf(q) !== index) {
+            indexes.push(index);
+          }
+        });
+        const nonDuplicateQuestions = res.filter(
+          (e, index) => !indexes.includes(index)
+        );
+        console.log(nonDuplicateQuestions);
         
         setShowHome(false);
         setShowFailedGame(true);
-        setCurrentQuestions(res)
+        setCurrentQuestions(nonDuplicateQuestions);
       })
       .catch((err) => console.error(err));
   };

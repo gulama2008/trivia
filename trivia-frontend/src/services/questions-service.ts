@@ -52,7 +52,7 @@ export class QuestionService {
     return response.json();
   }
 
-  public static async getByFailureStatus(): Promise<Question> {
+  public static async getByFailureStatus(): Promise<Question[]> {
     const response = await fetch(`http://localhost:8080/questions/failed`);
     if (!response.ok) {
       throw new Error(`Could not find questions with status "failed"`);
