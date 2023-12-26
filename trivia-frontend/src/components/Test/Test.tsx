@@ -32,7 +32,7 @@ const Test = () => {
         {currentQuestionIndex + 1}/10
       </div>
       <div className={styles.question_container}>
-        <Question />
+        <Question type="new"/>
         {showCorrect && (
           <div>
             <Correct />

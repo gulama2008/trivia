@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { TriviaAPI } from "../services/trivia-api";
+import { Question } from "../services/questions-service";
 
 export const TriviaContext = createContext<any>(null);
 export interface ICategory {
@@ -35,6 +36,7 @@ const TriviaContextProvider = ({ children }: any) => {
     useState<boolean>(false);
   const [showFailedGame, setShowFailedGame] = useState<boolean>(false);
   const [showHome, setShowHome] = useState<boolean>(true);
+  const [failedQuestions, setFailedQuestions] = useState<Question[]>();
   useEffect(() => {
     TriviaAPI.getCategories()
       .then((res) => {
@@ -83,6 +85,8 @@ const TriviaContextProvider = ({ children }: any) => {
         setShowHome,
         showFailedGame,
         setShowFailedGame,
+        failedQuestions,
+        setFailedQuestions,
       }}
     >
       {children}

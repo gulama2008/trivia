@@ -23,6 +23,7 @@ const Answer = ({ content, index }: AnswerProps) => {
     setAnswerIndex,
     setShowCorrect,
     currentGameId,
+    showFailedGame,
   } = useContext(TriviaContext);
   const [isCorrect, setIsCorrect] = useState<string>();
   let answerClass = styles.answer;
@@ -34,57 +35,99 @@ const Answer = ({ content, index }: AnswerProps) => {
   }
   const handleClick = (e: any) => {
     setAnswerIndex(index);
-    if (
-      e.target.innerText ==
-      currentQuestions[currentQuestionIndex].correct_answer
-    ) {
-      setIsCorrect("correct");
-      setScore(score + 1);
-
-      if (currentQuestionIndex == 10) {
-        setShowWinModal(true);
+    console.log(currentQuestions[currentQuestionIndex]);
+    if (showFailedGame) {
+      if (
+        e.target.innerText ==
+        currentQuestions[currentQuestionIndex].correctAnswer
+      ) {
+        setIsCorrect("correct");
+        if (currentQuestionIndex == currentQuestions.length - 1) {
+          setShowWinModal(true);
+        } else {
+          setShowCorrect(true);
+          setTimeout(() => {
+            setCurrentQuestionIndex(currentQuestionIndex + 1);
+            setShowCorrect(false);
+          }, 1000);
+        }
+        const data = {
+          submittedAnswer: e.target.innerText,
+          failureStatus: false,
+        };
+        QuestionService.updateQuestion(
+          currentQuestions[currentQuestionIndex].id,
+          data
+        )
+          .then((res) => console.log(res))
+          .catch((err) => console.error(err));
       } else {
-        setShowCorrect(true);
-        setTimeout(() => {
-          setCurrentQuestionIndex(currentQuestionIndex + 1);
-          setShowCorrect(false);
-        }, 1000);
+        setIsCorrect("incorrect");
+        setShowGameOverModal(true);
+        const data = {
+          submittedAnswer: e.target.innerText,
+          failureStatus: true,
+        };
+        QuestionService.updateQuestion(
+          currentQuestions[currentQuestionIndex].id,
+          data
+        )
+          .then((res) => console.log(res))
+          .catch((err) => console.error(err));
       }
-      const updateGameData = {
-        score: score + 1,
-      };
-      const createQuestionData = {   
-        question: currentQuestions[currentQuestionIndex].question,
-        correntAnswer: currentQuestions[currentQuestionIndex].correct_answer,
-        incorrentAnswer: currentQuestions[currentQuestionIndex].incorrect_answers,
-        submittedAnswer: e.target.innerText,
-        failedOrNot: false,
-        gameId: currentGameId,
-      }
-      QuestionService.createQuestion(createQuestionData)
-        .then((res) => console.log(res))
-        .catch((err) => console.error(err));
-      
-      GameService.updateGame(currentGameId, updateGameData)
-        .then((res) => console.log(res))
-        .catch((err) => console.error(err));
-      
     } else {
-      setIsCorrect("incorrect");
-      setShowGameOverModal(true);
-      setStopTimer(true);
-      const createQuestionData = {
-        question: currentQuestions[currentQuestionIndex].question,
-        correntAnswer: currentQuestions[currentQuestionIndex].correct_answer,
-        incorrentAnswer:
-          currentQuestions[currentQuestionIndex].incorrect_answers,
-        submittedAnswer: e.target.innerText,
-        failedOrNot: true,
-        gameId: currentGameId,
-      };
-      QuestionService.createQuestion(createQuestionData)
-        .then((res) => console.log(res))
-        .catch((err) => console.error(err));
+      if (
+        e.target.innerText ==
+        currentQuestions[currentQuestionIndex].correct_answer
+      ) {
+        setIsCorrect("correct");
+        setScore(score + 1);
+
+        if (currentQuestionIndex == 10) {
+          setShowWinModal(true);
+        } else {
+          setShowCorrect(true);
+          setTimeout(() => {
+            setCurrentQuestionIndex(currentQuestionIndex + 1);
+            setShowCorrect(false);
+          }, 1000);
+        }
+        const updateGameData = {
+          score: score + 1,
+        };
+        const createQuestionData = {
+          question: currentQuestions[currentQuestionIndex].question,
+          correntAnswer: currentQuestions[currentQuestionIndex].correct_answer,
+          incorrentAnswer:
+            currentQuestions[currentQuestionIndex].incorrect_answers,
+          submittedAnswer: e.target.innerText,
+          failureStatus: false,
+          gameId: currentGameId,
+        };
+        QuestionService.createQuestion(createQuestionData)
+          .then((res) => console.log(res))
+          .catch((err) => console.error(err));
+
+        GameService.updateGame(currentGameId, updateGameData)
+          .then((res) => console.log(res))
+          .catch((err) => console.error(err));
+      } else {
+        setIsCorrect("incorrect");
+        setShowGameOverModal(true);
+        setStopTimer(true);
+        const createQuestionData = {
+          question: currentQuestions[currentQuestionIndex].question,
+          correntAnswer: currentQuestions[currentQuestionIndex].correct_answer,
+          incorrentAnswer:
+            currentQuestions[currentQuestionIndex].incorrect_answers,
+          submittedAnswer: e.target.innerText,
+          failureStatus: true,
+          gameId: currentGameId,
+        };
+        QuestionService.createQuestion(createQuestionData)
+          .then((res) => console.log(res))
+          .catch((err) => console.error(err));
+      }
     }
   };
   return (
