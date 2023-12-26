@@ -4,6 +4,7 @@ import { generateRandomOrderArray } from "../../services/utils";
 import styles from "./Question.module.scss";
 import Answer from "../Answer/Answer";
 import { QuestionService } from "../../services/questions-service";
+import { decode } from "html-entities";
 export interface QuestionProps {
   type: string;
 }
@@ -54,7 +55,7 @@ const Question = ({ type }: QuestionProps) => {
       {currentQuestions?.length > 0 && (
         <div className={questionContainerClass}>
           <div className={styles.question}>
-            {currentQuestions[currentQuestionIndex].question}
+            {decode(currentQuestions[currentQuestionIndex].question)}
           </div>
           {answerArr?.map((answer: string, index: number) => {
             return <Answer content={answer} index={index} />;

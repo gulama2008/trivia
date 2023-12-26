@@ -3,6 +3,7 @@ import styles from "./Answer.module.scss";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 import { GameService } from "../../services/games-service";
 import { QuestionService } from "../../services/questions-service";
+import { decode } from "html-entities";
 export interface AnswerProps {
   content: string;
   // onClick: (e:any) => any;
@@ -132,7 +133,7 @@ const Answer = ({ content, index }: AnswerProps) => {
   };
   return (
     <div onClick={handleClick} className={answerClass}>
-      {content}
+      {decode(content)}
     </div>
   );
 };
