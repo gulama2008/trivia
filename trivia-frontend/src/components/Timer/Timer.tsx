@@ -33,7 +33,7 @@ console.log("testtest");
         clearInterval(interval);
         console.log(timerNumber);
       }
-      setTimerNumber(--countdown);
+      setTimerNumber(countdown--);
     }, 1000);
 
     return () => clearInterval(interval);

@@ -25,7 +25,7 @@ const TriviaContextProvider = ({ children }: any) => {
   const [showNewGame, setShowNewGame] = useState<boolean>(true);
   const [showTest, setShowTest] = useState<boolean>(false);
   const [showGameOverModal, setShowGameOverModal] = useState<boolean>(false);
-  const [timerNumber, setTimerNumber] = useState<number>(10);
+  const [timerNumber, setTimerNumber] = useState<number>(0);
   const [stopTimer, setStopTimer] = useState<boolean>(false);
   const [showWinModal, setShowWinModal] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
