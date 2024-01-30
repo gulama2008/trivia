@@ -1,3 +1,5 @@
+import { url } from "./games-service";
+
 export interface Question {
   id: number;
   question: string;
@@ -24,12 +26,12 @@ export interface UpdateQuestionParams {
 
 export class QuestionService {
   public static async get(): Promise<Question[]> {
-    const response = await fetch("http://localhost:8080/questions");
+    const response = await fetch(`${url}/questions`);
     return await response.json();
   }
 
   public static async getById(id: number): Promise<Question> {
-    const response = await fetch(`http://localhost:8080/questions/${id}`);
+    const response = await fetch(`${url}/questions/${id}`);
     if (!response.ok) {
       throw new Error(`Could not find question with id ${id}`);
     }
@@ -39,7 +41,7 @@ export class QuestionService {
   public static async createQuestion(
     data: NewQuestionParams
   ): Promise<NewQuestionParams> {
-    const response = await fetch("http://localhost:8080/questions", {
+    const response = await fetch(`${url}/questions`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +55,7 @@ export class QuestionService {
   }
 
   public static async getByFailureStatus(): Promise<Question[]> {
-    const response = await fetch(`http://localhost:8080/questions/failed`);
+    const response = await fetch(`${url}/questions/failed`);
     if (!response.ok) {
       throw new Error(`Could not find questions with status "failed"`);
     }
@@ -61,7 +63,7 @@ export class QuestionService {
   }
 
   public static async updateQuestion(id: number, data: UpdateQuestionParams) {
-    const response = await fetch(`http://localhost:8080/questions/${id}`, {
+    const response = await fetch(`${url}/questions/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

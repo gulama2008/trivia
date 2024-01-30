@@ -69,9 +69,11 @@ This is an application that allow users to play trivia and display a score at th
 - When choose "replay faild questions" from the home page, a game will start with all the questions the user has answered incorrectly. Same as playing a new game, the questions will show one by one if answer correctly and the game will be over if answered incorrectly. When a question is answered correctly, it won't be contained in the game next time
 
 ## Known Issues  
- The timer is not showing the correct number when the user gives a incorrect answer. For example, if the user choose the wrong answer when there are 5 seconds left, the timer should stop at 5, but currently it jumps back to 10. Plus there is always a delay of showing back to 10 when move to the next question
+ - The timer is not showing the correct number when the user gives a incorrect answer. For example, if the user choose the wrong answer when there are 5 seconds left, the timer should stop at 5, but currently it jumps back to 10. Plus there is always a delay of showing back to 10 when move to the next question
+ - The speed of the deployed app is a bit slow due to location of the server (in US) and the free version of database
 
 ## Future Goals
 
 - Fix the timer
+- Maybe will try to deploy it on AWS to optimise the speed
 

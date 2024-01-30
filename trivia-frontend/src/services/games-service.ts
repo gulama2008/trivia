@@ -6,14 +6,16 @@ export interface Game {
 export interface UpdateGameParam { 
   score: number;
 }
+
+export const url="https://trivia-app-v1-25fbb26bb180.herokuapp.com"
 export class GameService {
   public static async get(): Promise<Game[]> {
-    const response = await fetch("http://localhost:8080/games");
+    const response = await fetch(`${url}/games`);
     return await response.json();
   }
 
   public static async createGame(): Promise<Game> {
-    const response = await fetch("http://localhost:8080/games", {
+    const response = await fetch(`${url}/games`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +28,7 @@ export class GameService {
   }
 
   public static async updateGame(id: number, data: any) {
-    const response = await fetch(`http://localhost:8080/games/${id}`, {
+    const response = await fetch(`${url}/games/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
