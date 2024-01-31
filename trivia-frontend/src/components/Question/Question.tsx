@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 import { generateRandomOrderArray } from "../../services/utils";
 import styles from "./Question.module.scss";
 import Answer from "../Answer/Answer";
-import { QuestionService } from "../../services/questions-service";
 import { decode } from "html-entities";
 export interface QuestionProps {
   type: string;
@@ -11,16 +10,8 @@ export interface QuestionProps {
 const Question = ({ type }: QuestionProps) => {
   const {
     currentQuestions,
-    setCurrentQuestions,
     currentQuestionIndex,
-    setCurrentQuestionIndex,
-    setShowGameOverModal,
-    stopTimer,
-    setStopTimer,
     showWinModal,
-    setShowWinModal,
-    score,
-    setScore,
     setAnswerIndex,
     showGameOverModal,
   } = useContext(TriviaContext);

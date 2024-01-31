@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 import { TriviaAPI } from "../../services/trivia-api";
 import styles from "./Modal.module.scss";
@@ -9,9 +9,7 @@ export interface ModalProps {
 }
 const Modal = ({ title }: ModalProps) => {
   const {
-    showHome,
     setShowHome,
-    showTest,
     setShowTest,
     setShowGameOverModal,
     chosenCategory,
@@ -35,7 +33,6 @@ const Modal = ({ title }: ModalProps) => {
         .then((res) => {
           console.log(res);
           setShowGameOverModal(false);
-          // setShowFailedGame(true);
           setCurrentQuestions(res);
         })
         .catch((err) => console.error(err));

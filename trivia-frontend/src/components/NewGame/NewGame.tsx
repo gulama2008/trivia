@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import styles from "./NewGame.module.scss"
 import Categories from '../Category/Categories';
 import Level from '../Level/Level';
@@ -9,14 +9,9 @@ const NewGame = () => {
     const {
       chosenCategory,
       chosenDifficulty,
-      currentQuestions,
       setCurrentQuestions,
-      showNewGame,
       setShowNewGame,
-      showTest,
       setShowTest,
-      showGameOverModal,
-      currentGameId,
       setCurrentGameId,
     } = useContext(TriviaContext);
     const handleClick = () => {

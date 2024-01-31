@@ -1,23 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect} from "react";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 import styles from "./Timer.module.scss"
 import timer from "../../assets/timer.png"
 const Timer = () => {
   const {
     currentQuestions,
-    setCurrentQuestions,
     currentQuestionIndex,
-    setCurrentQuestionIndex,
     setShowGameOverModal,
-    showGameOverModal,
     timerNumber,
     setTimerNumber,
     stopTimer,
-    setStopTimer,
   } = useContext(TriviaContext);
 console.log("testtest");
 
-  const [countDown, setCountDown] = useState<number>(10);
+  // const [countDown, setCountDown] = useState<number>(10);
   useEffect(() => {
     let countdown = 10;
     // let interval: any;

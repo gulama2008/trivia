@@ -57,15 +57,15 @@ This is an application that allow users to play trivia and display a score at th
 ## Features
 
 - This trivia game application has two options: play a new game or re-play a failed game
-![home page](./trivia-frontend/src/assets/home.png)
+![home page](./src/assets/home.png)
 - When click the "Start new game" button, a new game setting option will be shown and the user can choose the category of game from the select category options. And there are also three options of difficulty - easy, medium and hard for users to choose 
-![new game](./trivia-frontend/src/assets/new.png)
+![new game](./src/assets/new.png)
 - After click the start game, a new game will start and being saved in the database, each game contains 10 questions, which are all multiple choices, the user can choose an answer from the four options and if the answer is correct, the option box will turn green and a message of "Your answer is correct" will appear under the question. And after one second, it will automatically show the next question
-![correct answer](./trivia-frontend/src/assets/correctanswer.png)  
+![correct answer](./src/assets/correctanswer.png)  
 - If the answer the user choose is incorrect, the wrong answer box is in red color and the game is over, there is a game over message under the question with two buttons: retry and quit. If clicking retry, a new game will start with another 10 questions, and if click quit, it will return to the home page
-![incorrect answer](./trivia-frontend/src/assets/incorrect.png)  
+![incorrect answer](./src/assets/incorrect.png)  
 - There is a timer on the top left corner counting down from 10, if the user still not choose an answer when it count down to 0, the game is over automatically. And there is a score on the top right corner, it will add one when answer one question correctly
-![timer and score](./trivia-frontend/src/assets/timerandscore.png)  
+![timer and score](./src/assets/timerandscore.png)  
 - When choose "replay faild questions" from the home page, a game will start with all the questions the user has answered incorrectly. Same as playing a new game, the questions will show one by one if answer correctly and the game will be over if answered incorrectly. When a question is answered correctly, it won't be contained in the game next time
 
 ## Known Issues  

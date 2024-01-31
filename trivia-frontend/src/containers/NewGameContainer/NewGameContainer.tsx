@@ -1,5 +1,4 @@
 import { useContext, useEffect } from "react";
-import Home from "../../components/Home/Home";
 import Test from "../../components/Test/Test";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 import NewGame from "../../components/NewGame/NewGame";

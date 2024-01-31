@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import  { useContext, useEffect } from "react";
 import Modal from "../Modal/Modal";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 import Timer from "../Timer/Timer";

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext} from "react";
 import {
   ICategory,
   TriviaContext,
@@ -8,7 +8,6 @@ import styles from "./Categories.module.scss";
 const Categories = () => {
   const { categories, chosenCategory, setChosenCategory } =
     useContext(TriviaContext);
-  // const [selectedCategory, setSelectedCatetory] = useState<number>(0);
   const handleChange = (e: any) => {
     setChosenCategory(parseInt(e.target.value));
   };

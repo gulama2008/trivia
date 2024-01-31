@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import styles from "./Answer.module.scss";
 import { TriviaContext } from "../../TriviaContextProvider/TriviaContextProvider";
 import { GameService } from "../../services/games-service";

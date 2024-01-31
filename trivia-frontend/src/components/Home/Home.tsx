@@ -9,8 +9,6 @@ const Home = () => {
     setShowNewGameContainer,
     setShowFailedGame,
     setShowNewGame,
-    failedQuestions,
-    setFailedQuestions,
     setCurrentQuestions,
   } = useContext(TriviaContext);
 
@@ -32,7 +30,10 @@ const Home = () => {
           }
         });
         const nonDuplicateQuestions = res.filter(
-          (e, index) => !indexes.includes(index)
+          (e, index) => {
+            console.log(e);
+            return !indexes.includes(index)
+          }
         );
         console.log(nonDuplicateQuestions);
         

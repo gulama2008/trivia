@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import  { useContext } from 'react'
 import styles from "./FailedGame.module.scss"
 import Correct from '../Correct/Correct';
 import Modal from '../Modal/Modal';
@@ -7,9 +7,7 @@ import { TriviaContext } from '../../TriviaContextProvider/TriviaContextProvider
 const FailedGame = () => {
   const {
     showGameOverModal,
-    currentQuestionIndex,
     showWinModal,
-    score,
     showCorrect,
     currentQuestions,
   } = useContext(TriviaContext);
